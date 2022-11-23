@@ -8,7 +8,7 @@
 <h3 align="center">pear store</h3>
 
   <p align="center">
-    another fruit based computer store
+    another fruit based computer company
     <br />
   </p>
 </div>
@@ -44,20 +44,14 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/yuhonas/pear-store.git
    ```
-3. Install NPM packages
+2. Install NPM packages
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-
 <!-- USAGE EXAMPLES -->
 ## Usage
 

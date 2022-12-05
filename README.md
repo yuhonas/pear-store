@@ -81,7 +81,21 @@ Don't forget to give the project a star! Thanks again!
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
+## TODO
+
+* Image diff
+* Infrastructure Diagram
+* E2E Responsive testing
+* Load Testing
+
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
-
 * [Best README Template](https://github.com/othneildrew/Best-README-Template)
+
+
+* Design should move from px to rem for type scaling
+* Unsure of "Iter" support, Fallback fonts FOUT (Flash of Unstyled Text)
+* No responsive views
+* Missing pages
+* No search results/responsive view/UX (highlights/focus)
+* Design palette sync with tailwind/figma

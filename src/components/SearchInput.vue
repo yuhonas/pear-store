@@ -7,7 +7,7 @@
               <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-6 h-6"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
             </button>
           </span>
-          <input type="search" name="q" class="w-full py-2 text-sm rounded-full pl-10 focus:outline-none" placeholder="Search" autocomplete="off">
+          <input :value="modelValue" @input="$emit('update:modelValue', $event.target.value)" type="text" name="query" class="w-full py-2 text-sm rounded-full pl-10 focus:outline-none" placeholder="Search" autocomplete="off">
         </div>
       </form>
     </div>
@@ -16,9 +16,8 @@
 <script>
 export default {
   name: 'SearchInput',
-  props: {
-    msg: String
-  }
+  props: ['modelValue'],
+  emits: ['update:modelValue']
 }
 </script>
 

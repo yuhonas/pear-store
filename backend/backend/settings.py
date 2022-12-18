@@ -12,6 +12,14 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 
+# NOTE: https://github.com/jazzband/dj-database-url
+# import dj_database_url
+
+
+# NOTE: https://github.com/joke2k/django-environ
+import environ
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,7 +33,9 @@ SECRET_KEY = 'django-insecure-v7#goxwfx08rxb^tjbn(0#55+oeujce4p7ybmoqv&+(@_*aru^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['']
+ALLOWED_HOSTS = ['*']
+
 
 
 # Application definition
@@ -79,22 +89,10 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'pear-store',
-        'USER': 'postgres',
-        'PASSWORD': '',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.parse(
+        'postgres://postgres:@127.0.0.1/pear-store'
+    )
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 
 
 # Password validation

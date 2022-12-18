@@ -1,8 +1,13 @@
+locals {
+  application = "spotter"
+}
+
 provider "aws" {
   default_tags {
     tags = {
-      Application = "spotter"
+      Application = local.application
       Environment = "staging"
+      ProvisionedBy = "terraform"
     }
   }
 
@@ -46,40 +51,24 @@ provider "aws" {
 #   sensitive = true
 # }
 
-resource "aws_apprunner_connection" "example" {
-  connection_name = "example"
-  provider_type   = "GITHUB"
+resource "aws_elastic_beanstalk_application" "app" {
+  name        = local.application
+  # description = "tf-test-desc"
 }
 
-resource "aws_apprunner_service" "example" {
-  service_name = "example"
+resource "aws_elastic_beanstalk_environment" "env" {
+  name                = local.application
+  application         = aws_elastic_beanstalk_application.app.name
+  solution_stack_name = "64bit Amazon Linux 2 v3.4.2 running Python 3.8"
 
-  source_configuration {
-    authentication_configuration {
-      connection_arn = aws_apprunner_connection.example.arn
-    }
-    code_repository {
-      code_configuration {
-#        code_configuration_values {
-#          build_command = "python setup.py develop"
-#          port          = "8000"
-#          runtime       = "PYTHON_3"
-#          start_command = "python app.py"
-#        }
-        configuration_source = "API"
-      }
-      repository_url = "https://github.com/aws-containers/hello-app-runner"
-      source_code_version {
-        type  = "BRANCH"
-        value = "main"
-      }
-    }
+  setting {
+      namespace = "aws:autoscaling:launchconfiguration"
+      name = "IamInstanceProfile"
+      value = "aws-elasticbeanstalk-ec2-role"
   }
+}
 
-#  network_configuration {
-#    egress_configuration {
-#      egress_type       = "VPC"
-#      vpc_connector_arn = aws_apprunner_vpc_connector.connector.arn
-#    }
-  #}
+
+output "beanstalk_application_name" {
+  value = aws_elastic_beanstalk_application.app.name
 }
